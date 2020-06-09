@@ -1,0 +1,30 @@
+6
+A12 Bionic
+Snapdragon 845
+Kirin 980
+
+A11 Bionic
+Exynos 8895
+Kirin 970
+
+A10 Bionic
+Snapdragon 710
+Kirin 960
+
+A9X Bionic
+Snapdragon 821
+Kirin 710
+
+A9 Bionic
+Exynos 8890
+
+	
+A8X Bionic
+Snapdragon 660
+
+
+
+
+
+
+

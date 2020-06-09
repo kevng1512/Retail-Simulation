@@ -1,0 +1,61 @@
+6
+10 Inches
+TFT
+WVGA        (800 x 480)
+Intel Core i3-7130U @ 2.70GHz 
+128 GB (Solid State Drive)
+Intel HD Graphics 630 
+4 GB ram
+5 hours battry life
+Fingerprint Security
+
+11.6 Inches
+IPS
+qHD         (450 x 960)
+AMD PRO A12-8830B 
+256 GB (Hard Disk Drive)
+Intel UHD Graphics 620
+8 GB ram
+10 hours battry life
+Face ID Security
+
+13 Inches
+Amoled
+HD          (720 x 1280)
+Intel Core i5-7200U @ 2.50GHz
+512 GB (Hard Disk Drive)
+NVIDIA Quadro M500M (2GB DDR3) 
+16 GB ram
+15 hours battry life
+
+
+15.6 Inches
+Super Amoled
+Full HD    (1920 x 1080)
+Intel Core i5-6287U @ 3.10GHz
+1 TB (Hard Disk Drive)
+AMD Radeon R7 M445 (2GB GDDR5) 
+
+20 hours battry life
+
+
+17.3 Inches
+OLED
+2K/QHD     (2560 x 1440)
+Intel Core i7-6567U @ 3.30GHz 
+256 GB (Solid State Drive)
+Intel Iris Plus Graphics 650 
+
+
+
+
+
+LCD
+
+AMD Ryzen 3 2300U
+512 GB (Solid State Drive)
+NVIDIA GeForce 930MX (2GB DDR3)
+
+
+
+

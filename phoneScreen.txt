@@ -1,0 +1,29 @@
+6
+TFT
+WVGA        (800 x 480)
+5 MPx
+5 MPx
+
+IPS
+qHD         (450 x 960)
+8 MPx
+8 MPx
+
+Amoled
+HD          (720 x 1280)
+12 MPx
+12 MPx
+
+Super Amoled
+Full HD    (1920 x 1080)
+16 MPx
+16 MPx
+
+HD Super Amoled
+2K/QHD     (2560 x 1440)
+20 MPx
+20 MPx
+
+LCD
+4K         (3840 x 2160)
+24 MPx

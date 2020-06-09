@@ -1,0 +1,37 @@
+6
+1,715 mAh
+1 RAM
+1 ROM
+16 GB
+Touch ID
+
+1,821 mAh
+2 RAM
+2 ROM
+32 GB
+Micro SD
+
+1,960 mAh
+4 RAM
+4 ROM
+64 GB
+Dual Sim
+
+2,300 mAh
+8 RAM
+8 ROM
+128 GB
+Waterproof
+
+2,716 mAh
+
+
+256 GB
+Face ID
+
+3,000 mAh
+
+
+
+Wireless Charging
+

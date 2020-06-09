@@ -1,0 +1,775 @@
+// Nguyen Vu Kha        2017-10-0181
+// Period 1
+// FINAL PROJECT
+
+// (BUSINESS HISTORY), MARKETING: price and efficiency, employee profile?;
+// files need to be write back
+// phone type? laptoptop type? (prompt for user)
+// GO BACK OPTION, LOCKED??
+// searching and sorting(increasing in balance/alphabet)
+import java.io.*;
+import java.util.*;
+import java.awt.*;
+import hsa.*;
+
+// The "KevinsFinalProgram" class.
+public class KevinsFinalProgram
+{
+    static final int max = 100;
+    static double money;
+    static double budget;
+    static double price, price1, price2, price3, price4, price5, price6, price7, price8, price9;
+    static double w1, w2, w3, w4, w5, w6, w7, w8, w9, m1 = 0;
+    static double g1, g2, g3, g4, g5, g6, g7, g8, g9, g0;
+    static int employeeSize = 0;
+
+    public static void main (String[] args) throws IOException
+    {
+        /* int budget;
+         Phone phone;
+         phone = new Phone ();
+         PhoneChip chip;
+         chip = new PhoneChip ();
+         PhoneBattery battery;
+         battery = new PhoneBattery ();
+         WorkingLaptop work = new WorkingLaptop ();
+         GamingLaptop game = new GamingLaptop (); */
+
+        Employee[] employeeList;
+        employeeList = createEmployeeArray ();
+
+        while (true)
+        {
+            int choice;
+            System.out.println ("=============================================");
+            System.out.println ("\t\t  BUSINESS GAME");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.println ("======   1. Start your business        ======");
+            System.out.println ("======   2. Marketing                  ======");
+            System.out.println ("======   3. Employee Management        ======");
+            System.out.println ("======   4. Office Upgrade             ======");
+            System.out.println ("======   5. Check your current status  ======");
+            System.out.println ("======   6. Exit                       ======");
+            System.out.println ();
+            System.out.println ("=============================================");
+            System.out.println ();
+            System.out.println ();
+            System.out.print ("Please choose a number to start this game: ");
+            int num = Stdin.readInt ();
+            System.out.println ();
+            System.out.println ();
+
+            if (num == 1)
+            {
+                choice = showMenu (num);
+                if (choice == 1)
+                {
+                    phoneType ();
+                    System.out.println ("Your device cost: " + total (choice));
+                }
+
+                if (choice == 2)
+                {
+                    System.out.println ();
+                    System.out.println ("What type of laptop you want to make?");
+                    System.out.println ();
+                    System.out.println ("1.  Gaming Laptop");
+                    System.out.println ("2.  Working Laptop");
+                    System.out.println ();
+                    System.out.print ("Please choose an option above: ");
+                    int type = Stdin.readInt ();
+
+                    if (type == 1)
+                    {
+                        gamingLaptopType ();
+                        System.out.println ("It cost: " + total (type + 1) + "to produce 1 device");
+                    }
+                    else if (type == 2)
+                    {
+                        workingLaptopType ();
+                        System.out.println ("It cost: " + total (type + 1) + "to produce 1 device");
+                    }
+                }
+            }
+            else
+            {
+                if (num == 2)
+                {
+                    choice = showMenu (num);
+                    marketing (choice - 1);
+                    System.out.println ("Your marketing service cost: " + total (num + 2));
+                    System.out.println ();
+                }
+                else
+                {
+                    if (num == 3)
+                    {
+                        createEmployee (employeeList);
+                        choice = showMenu (num);
+                        if (choice == 1)
+                        {
+                            System.out.println ();
+                            showEmployeeArray (employeeList);
+                            System.out.println ();
+                        }
+
+                        if (choice == 2)
+                        {
+                            System.out.println ();
+                            addNewEmployee (employeeList);
+                            //writeEmployeeToFile (employeeList);
+                            System.out.println ();
+                        }
+
+                        if (choice == 3)
+                        {
+                            System.out.println ();
+                            deleteEmployee (employeeList, employeeSize);
+                            writeEmployeeToFile (employeeList);
+                        }
+                    }
+                    else
+                    {
+                        if (num == 4)
+                        {
+                            choice = showMenu (num);
+                        }
+                        else
+                        {
+                            if (num == 5)
+                            {
+                                choice = showMenu (num);
+                                budget = currentStatus (choice);
+                            }
+                            else
+                            {
+                                if (num == 6)
+                                {
+                                    choice = showMenu (num);
+                                    System.out.println ("TEST");
+                                    test ();
+                                    break;
+                                }
+                                else
+                                {
+                                    System.out.println ("Please check your input number again.");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } // main method
+
+
+    private static double currentStatus (int choice) throws IOException
+    {
+        double money = 0;
+
+        if (choice == 1)
+        {
+            BufferedReader infile;
+            infile = new BufferedReader (new FileReader ("currentMoney.txt"));
+            String Money = infile.readLine ();
+            money = Integer.parseInt (Money);
+            System.out.println ();
+            System.out.println ();
+            System.out.println ("You budget is: $" + money);
+        }
+        return money;
+    }
+
+
+    /* private static void writeData () throws IOException
+     {
+         String outputFileLoc = "currentMoney.txt";
+         PrintWriter output;
+         output = new PrintWriter (new FileWriter (outputFileLoc));
+         output.close ();
+     } */
+
+    private static void phoneType () throws IOException
+    {
+        PhoneChip chip;
+        chip = new PhoneChip ();
+        Phone phone;
+        phone = new Phone ();
+        PhoneBattery battery;
+        battery = new PhoneBattery ();
+
+        System.out.println ("1. Apple");
+        System.out.println ("2. Samsung");
+        System.out.println ("3. Huawei");
+        System.out.println ();
+        System.out.print ("Which phone would you like to do? ");
+        int choice = Stdin.readInt ();
+        System.out.println ();
+        chip.chipIden ();
+
+        switch (choice)
+        {
+            case 1:
+                chip.getAppleChip ();
+                System.out.println ();
+                System.out.print ("Please choose a processor: ");
+                int opt = Stdin.readInt ();
+                price = chip.printAppleChip (opt - 1);
+                System.out.println ();
+                //System.out.println (" test main " + price);
+                //System.out.println ("method " + total (opt));
+                break;
+            case 2:
+                chip.getSamsungChip ();
+                System.out.println ();
+                System.out.print ("Please choose a processor: ");
+                opt = Stdin.readInt ();
+                price = chip.printSamsungChip (opt - 1);
+                System.out.println ();
+                //System.out.println ("test main " + price);
+                break;
+            case 3:
+                chip.getHuaweiChip ();
+                System.out.println ();
+                System.out.print ("Please choose a processor: ");
+                opt = Stdin.readInt ();
+                price = chip.printHuaweiChip (opt - 1);
+                System.out.println ();
+                //System.out.println ("test main " + price);
+                break;
+        }
+
+        phone.showMenu ();
+        phone.getScreenType ();
+        System.out.println ();
+        System.out.print ("Please choose screen type: ");
+        int choiceScreen = Stdin.readInt ();
+        price1 = phone.printScreenType (choiceScreen - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price1);
+
+        phone.getScreenRes ();
+        System.out.println ();
+        System.out.print ("Please choose screen resolution: ");
+        int choiceRes = Stdin.readInt ();
+        price2 = phone.printScreenRes (choiceRes - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price2);
+
+        phone.getBackCam ();
+        System.out.println ();
+        System.out.print ("Please choose the camera: ");
+        int choiceBcam = Stdin.readInt ();
+        price3 = phone.printBackCam (choiceBcam - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price3);
+
+        phone.getFrontCam ();
+        System.out.println ();
+        System.out.print ("Please choose the frontal camera: ");
+        int choiceFcam = Stdin.readInt ();
+        price4 = phone.printFrontCam (choiceFcam - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price4);
+
+        battery.showMenu ();
+        battery.getBattery ();
+        System.out.println ();
+        System.out.print ("Please choose battery type: ");
+        int choiceBattery = Stdin.readInt ();
+        price5 = battery.printBatteryType (choiceBattery - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price5);
+
+        battery.getRam ();
+        System.out.println ();
+        System.out.print ("Please choose ram amount: ");
+        int choiceRam = Stdin.readInt ();
+        price6 = battery.printRamType (choiceRam - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price6);
+
+        battery.getRom ();
+        System.out.println ();
+        System.out.print ("Please choose rom amount: ");
+        int choiceRom = Stdin.readInt ();
+        price7 = battery.printRomType (choiceRom - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price7);
+
+        battery.getStorage ();
+        System.out.println ();
+        System.out.print ("Please choose storage amount: ");
+        int choiceStorage = Stdin.readInt ();
+        price8 = battery.printStorageType (choiceStorage - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price8);
+
+        battery.getTech ();
+        System.out.println ();
+        System.out.print ("Please choose phone's technology: ");
+        int choiceTech = Stdin.readInt ();
+        price9 = battery.printTechType (choiceTech - 1);
+        System.out.println ();
+        //System.out.println ("test main " + price9);
+    }
+
+
+    private static void gamingLaptopType () throws IOException
+    {
+        GamingLaptop g = new GamingLaptop ();
+
+        g.showMenu ();
+        g.getInches ();
+        System.out.println ();
+        System.out.print ("Please choose screen width: ");
+        int choiceScreen = Stdin.readInt ();
+        g1 = g.printInches (choiceScreen - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g1);
+
+        g.getScreenType ();
+        System.out.println ();
+        System.out.print ("Please choose screen type: ");
+        int choiceScreenType = Stdin.readInt ();
+        g2 = g.printScreenType (choiceScreenType - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g2);
+
+        g.getResolution ();
+        System.out.println ();
+        System.out.print ("Please choose screen resolution: ");
+        int choiceScreenRes = Stdin.readInt ();
+        g3 = g.printResolution (choiceScreenRes - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g3);
+
+        g.getChip ();
+        System.out.println ();
+        System.out.print ("Please choose the processor: ");
+        int choiceChip = Stdin.readInt ();
+        g4 = g.printChip (choiceChip - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g4);
+
+        g.getStorage ();
+        System.out.println ();
+        System.out.print ("Please choose the amount of storage: ");
+        int choiceStorage = Stdin.readInt ();
+        g5 = g.printStorage (choiceStorage - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g5);
+
+        g.getGpu1 ();
+        System.out.println ();
+        System.out.print ("Please choose the 1st graphic card: ");
+        int choiceGpu1 = Stdin.readInt ();
+        g6 = g.printGpu1 (choiceGpu1 - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g6);
+
+        g.getGpu2 ();
+        System.out.println ();
+        System.out.print ("Please choose the 2nd graphic card: ");
+        int choiceGpu2 = Stdin.readInt ();
+        g7 = g.printGpu2 (choiceGpu2 - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g7);
+
+        g.getRam ();
+        System.out.println ();
+        System.out.print ("Please choose the ram amount: ");
+        int choiceRam = Stdin.readInt ();
+        g8 = g.printRam (choiceRam - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g8);
+
+        g.getBattery ();
+        System.out.println ();
+        System.out.print ("Please choose the battery capacity: ");
+        int choiceBattery = Stdin.readInt ();
+        g9 = g.printBattery (choiceBattery - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g9);
+
+        g.getTech ();
+        System.out.println ();
+        System.out.print ("Please choose the technology: ");
+        int choiceTech = Stdin.readInt ();
+        g0 = g.printTech (choiceTech - 1);
+        System.out.println ();
+        //System.out.println ("test main " + g0);
+    }
+
+
+    private static void workingLaptopType () throws IOException
+    {
+        WorkingLaptop w = new WorkingLaptop ();
+
+        w.showMenu ();
+        w.getInches ();
+        System.out.println ();
+        System.out.print ("Please choose screen width: ");
+        int choiceScreen = Stdin.readInt ();
+        w1 = w.printInches (choiceScreen - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w1);
+
+        w.getScreenType ();
+        System.out.println ();
+        System.out.print ("Please choose screen type: ");
+        int choiceScreenType = Stdin.readInt ();
+        w2 = w.printScreenType (choiceScreenType - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w2);
+
+        w.getResolution ();
+        System.out.println ();
+        System.out.print ("Please choose screen resolution: ");
+        int choiceScreenRes = Stdin.readInt ();
+        w3 = w.printResolution (choiceScreenRes - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w3);
+
+        w.getChip ();
+        System.out.println ();
+        System.out.print ("Please choose the processor: ");
+        int choiceChip = Stdin.readInt ();
+        w4 = w.printChip (choiceChip - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w4);
+
+        w.getStorage ();
+        System.out.println ();
+        System.out.print ("Please choose the amount of storage: ");
+        int choiceStorage = Stdin.readInt ();
+        w5 = w.printStorage (choiceStorage - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w5);
+
+        w.getGpu1 ();
+        System.out.println ();
+        System.out.print ("Please choose the 1st graphic card: ");
+        int choiceGpu1 = Stdin.readInt ();
+        w6 = w.printGpu1 (choiceGpu1 - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w6);
+
+        w.getRam ();
+        System.out.println ();
+        System.out.print ("Please choose the ram amount: ");
+        int choiceRam = Stdin.readInt ();
+        w7 = w.printRam (choiceRam - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w7);
+
+        w.getBattery ();
+        System.out.println ();
+        System.out.print ("Please choose the battery capacity: ");
+        int choiceBattery = Stdin.readInt ();
+        w8 = w.printBattery (choiceBattery - 1);
+        System.out.println ();
+        //System.out.println ("test main " + w8);
+
+        w.getTech ();
+        System.out.println ();
+        System.out.print ("Please choose the technology: ");
+        int choiceTech = Stdin.readInt ();
+        w9 = w.printTech (choiceTech - 1);
+        System.out.println ();
+        //Stdiout.println ("test main " + gw);
+    }
+
+
+    private static void marketing (int d) throws IOException
+    {
+        Marketing m = new Marketing ();
+        m.markIden ();
+        m1 = m.Price [d];
+    }
+
+
+    private static Employee[] createEmployeeArray ()
+    {
+        Employee[] temp;
+        temp = new Employee [max];
+        return temp;
+    }
+
+
+    private static void createEmployee (Employee[] employeeList) throws IOException
+    {
+
+        String inputFileLoc = "employee.txt";
+        String str;
+        String employee;
+        String d;
+        double id;
+        int fileSize;
+
+        BufferedReader infile;
+        infile = new BufferedReader (new FileReader (inputFileLoc));
+
+        str = infile.readLine ();
+        fileSize = Integer.parseInt (str);
+
+        for (int i = 0 ; i < fileSize ; i++)
+        {
+            employee = infile.readLine ();
+            d = infile.readLine ();
+            id = Integer.parseInt (d);
+            employeeList [employeeSize] = new Employee (employee, id);
+            employeeSize++;
+            str = infile.readLine ();
+
+        }
+
+
+        infile.close ();
+    }
+
+
+    private static void showEmployeeArray (Employee[] employeeList)
+    {
+        for (int i = 0 ; i < employeeSize ; i++)
+        {
+            System.out.print (employeeList [i].getEmployee () + "\t");
+            System.out.println (employeeList [i].getId ());
+        }
+    }
+
+
+    private static void addNewEmployee (Employee[] employeeList)
+    {
+
+        String employee;
+
+        int id;
+        System.out.print ("Enter New Employee Name: ");
+        employee = Stdin.readLine ();
+
+        System.out.print ("Enter " + employee + "'s ID: ");
+        id = Stdin.readInt ();
+
+        employeeList [employeeSize] = new Employee (employee, id);
+        employeeSize++;
+
+
+    }
+
+
+    private static void writeEmployeeToFile (Employee[] employeeList) throws IOException
+    {
+        String outputFileLoc = "employee.txt";
+        PrintWriter output;
+        output = new PrintWriter (new FileWriter (outputFileLoc));
+
+        output.println (employeeSize);
+        for (int i = 0 ; i < employeeSize ; i++)
+        {
+            output.println (employeeList [i].getEmployee ());
+            output.println (employeeList [i].getId ());
+            output.println ();
+        }
+
+
+        output.close ();
+
+    }
+
+
+    private static void deleteEmployee (Employee[] list, int index)
+    {
+
+        if (index > employeeSize)
+            return;
+
+        System.out.println (list [index].getEmployee () + " has been deleted");
+        list [index] = null;
+
+        for (int i = index ; i < employeeSize - 1 ; i++)
+            list [i] = list [i + 1];
+
+        employeeSize--;
+        return;
+
+    }
+
+
+    private static double total (int choice)
+    {
+        double ans = 0;
+        if (choice == 1)
+            ans = price + price1 + price2 + price3 + price4 + price5 + price6 + price7 + price8 + price9;
+        else if (choice == 2)
+            ans = g1 + g2 + g3 + g4 + g5 + g6 + g7 + g8 + g9 + g0;
+        else if (choice == 3)
+            ans = w1 + w2 + w3 + w4 + w5 + w6 + w7 + w8 + w9;
+        else if (choice == 4)
+            ans = m1;
+        return ans;
+    }
+
+
+    private static int showMenu (int num) throws IOException
+    {
+        int choice;
+        if (num == 1)
+        {
+            System.out.println ("=============================================");
+            System.out.println ("===== Please choose one of the products =====");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.println ("======   1. Smart phone                ======");
+            System.out.println ("======   2. Laptop                     ======");
+            System.out.println ("======   3. Go back                    ======");
+            //System.out.println ("======   4. Digial Camera              ======");
+            System.out.println ("=============================================");
+            System.out.println ();
+            System.out.println ();
+        }
+
+        else if (num == 2)
+        {
+            Marketing m = new Marketing ();
+            m.markIden ();
+
+            System.out.println ("============================================");
+            System.out.println ("=====  How would you like to advertise? ====");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - ");
+            System.out.println ("=====  1. Social Media                  ====");
+            System.out.print ("\t\t");
+            m.printMarketing (0);
+            System.out.println ("=====  2. Billboards & TVs              ====");
+            System.out.print ("\t\t");
+            m.printMarketing (1);
+            System.out.println ("=====  3. Affiliate Programs            ====");
+            System.out.print ("\t\t");
+            m.printMarketing (2);
+            System.out.println ("=====  4. In-Store Promotions           ====");
+            System.out.print ("\t\t");
+            m.printMarketing (03);
+            System.out.println ("=====  5. Magazines and posters         ====");
+            System.out.print ("\t\t");
+            m.printMarketing (4);
+            System.out.println ("=====  6. Offer an Upgrade or Trade-In  ====");
+            System.out.print ("\t\t");
+            m.printMarketing (5);
+            System.out.println ("=====  7. Email Marketing & Online Ads  ====");
+            System.out.print ("\t\t");
+            m.printMarketing (6);
+            System.out.println ("=====  8. Go back                      =====");
+            System.out.println ("============================================");
+            System.out.println ();
+            System.out.println ();
+        }
+
+        else if (num == 3)
+        {
+            System.out.println ("============================================");
+            System.out.println ("=====     What you would like to do?    ====");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - ");
+            System.out.println ("======  1. Show employee list         ======");
+            System.out.println ("======  2. Hire an employee;          ======");
+            System.out.println ("======  3. Dismiss an employee        ======");
+            System.out.println ("======  4. Go back                    ======");
+            System.out.println ("============================================");
+            System.out.println ();
+            System.out.println ();
+        }
+
+        else if (num == 4)
+        {
+            System.out.println ("=============================================");
+            System.out.println ("=====       Customize your office       =====");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.println ("====== 1. Upgrade office's facility    ======");
+            System.out.println ("======     (More members can work)     ======");
+            System.out.println ("====== 2. Your officce summary         ======");
+            System.out.println ("====== 3. Go back                      ======");
+            System.out.println ("=============================================");
+            System.out.println ();
+            System.out.println ();
+        }
+
+        else if (num == 5)
+        {
+            System.out.println ("=============================================");
+            System.out.println ("=====        View your status           =====");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.println ("======   1. Budget                     ======");
+            System.out.println ("======   2. Business history           ======");
+            System.out.println ("======   3. Go back                     ======");
+            System.out.println ("=============================================");
+            System.out.println ();
+            System.out.println ();
+
+        }
+
+        else if (num == 6)
+        {
+            System.out.println ("=============================================");
+            System.out.println ("=====              Quitting             =====");
+            System.out.println ("- - - - - - - - - - - - - - - - - - - - - - -");
+            System.out.println ("======   1. Save and exit              ======");
+            System.out.println ("======   2. Exit without saving        ======");
+            System.out.println ("======   3. Go back                    ======");
+            System.out.println ("=============================================");
+            System.out.println ();
+            System.out.println ();
+        }
+
+        System.out.print ("Please choose an option above: ");
+        choice = Stdin.readInt ();
+        return choice;
+    }
+
+
+    private static void test () throws IOException
+    {
+        Phone phone;
+        phone = new Phone ();
+        PhoneChip chip;
+        chip = new PhoneChip ();
+        PhoneBattery battery;
+        battery = new PhoneBattery ();
+        WorkingLaptop work = new WorkingLaptop ();
+        GamingLaptop game = new GamingLaptop ();
+
+        /*phone.showMenu ();
+        phone.printScreenType ();
+        phone.printScreenRes ();
+        phone.printBackCam ();
+        phone.printFrontCam ();
+        chip.chipIden ();
+        chip.printAppleChip ();
+        chip.printSamsungChip ();
+        chip.printHuaweiChip ();
+        battery.showMenu ();
+        battery.printBattery ();
+        battery.printRam ();
+        battery.printRom ();
+        battery.printStorage ();
+        battery.printTech ();
+        work.showMenu ();
+        work.printInches ();
+        work.printScreenType ();
+        work.printResolution ();
+        work.printChip ();
+        work.printStorage ();
+        work.printGpu1 ();
+        work.printRam ();
+        work.printBattery ();
+        swork.printTech ();
+        game.showMenu ();
+        game.printInches ();
+        game.printScreenType ();
+        game.printResolution ();
+        game.printChip ();
+        game.printStorage ();
+        game.printGpu1 ();
+        game.printRam ();
+        game.printBattery ();
+        game.printTech ();*/
+
+    }
+} // KevinsFinalProgram class
